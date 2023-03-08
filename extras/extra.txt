@@ -1,0 +1,11 @@
+{"data": 
+    {"accessToken": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjc3NzQ4NDEzLCJleHAiOjE2Nzc3NTIwMTN9.CKH_QuUDmuPVYriIiFhmksCm3U3JCgfZcPcfXdKELN8",
+     "refreshToken": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjc3NzQ4NDEzLCJleHAiOjE2Nzg2MTI0MTN9.b_vlWHU0rWSuRTs4E5Z-t9nG1jZB-ffFo_HupyAGd4g",
+    "user": {"department": [Object], "email": "admin@delta.smart",
+     "id": 1,
+      "isEnabled": true,
+       "name": "System",
+        "profilePicture": "https://delta-intern.us-east-2.elasticbeanstalk.com/api/file-open/2aa968d5-e99c-4f93-9c9e-aa4f73f34f41--508376-909160924.jpg", 
+        "role": [Object], "surname": "Administrator"}}, 
+        "message": "Operation performed successfully."
+}
