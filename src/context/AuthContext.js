@@ -3,6 +3,7 @@ import { navigate } from "../navigationRef";
 import config from "../api/config";
 import configTr from "../api/configTr"
 import axios from "axios";
+import * as ImagePicker from 'expo-image-picker';
 
 const authReducer = (state, action)=>{
     switch(action.type){
@@ -53,6 +54,19 @@ const signout = (dispatch) => (route) =>{
     navigate(route);
 }
 
+const pickImage = (dispatch) => async ({setImage}) => {
+    // No permissions request is necessary for launching the image library
+    const response = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    if(!response.canceled){
+        setImage(response.assets[0].uri);
+    }
+};
 
 const signin = (dispatch) => async ({email, password})=>{
     try{
@@ -415,22 +429,27 @@ const confirmResetPasswordTr = (dispatch) => async ({code, password}) => {
     }
 };
 
-const obtainPic = (dispatch) => async ({accessToken, picLink}) =>{
+
+const updatePic = (dispatch) => async({id, imageUri, authToken})=>{
     try{
-    const authPic = 'Bearer ' + accessToken;
-    const response = await config.get('/api/file-open/', {
-        Authorization: authPic
-    });
-    console.log(response.data);
+        const response = await config.post(`/api/user/${id}/profile-picture/add`, {
+            file: imageUri
+        },
+        {
+            params: {
+                id
+            },
+            headers: {
+                Authorization: 'Bearer ' + authToken,
+                Accept: 'applications/json',
+                "Content-Type": "multipart/form-data",
+            }
+        }
+        )
     }
     catch(err){
-        console.log("Errorrrrrr");
-        console.log(err.response.data.message);
+        console.log(err.response);
     }
-};
-
-const updatePic = (dispatch) => ()=>{
-
 };
 
 
@@ -449,7 +468,8 @@ export const {Provider, Context} = createDataContext(
         confirmActivationTr,
         confirmResetPassword,
         confirmResetPasswordTr,
-        updatePic
+        updatePic,
+        pickImage
     },
     {
         token: null,

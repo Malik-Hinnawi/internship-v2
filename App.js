@@ -23,6 +23,7 @@ import LogoutScreen from './src/screens/LogoutScreen';
 import LogoutScreenTr from './src/screens/LogoutScreenTr';
 import ConfirmPasswordScreen from './src/screens/ConfirmPasswordScreen';
 import ConfirmPasswordScreenTr from './src/screens/ConfirmPasswordScreenTr';
+import UploadScreen from './src/screens/UploadScreen';
 
 const mainNavigator = createSwitchNavigator({
     englishFlow: createSwitchNavigator({
@@ -36,7 +37,8 @@ const mainNavigator = createSwitchNavigator({
             Logout: LogoutScreen
         }),
         ConfirmCode: ConfirmCodeScreen,
-        ConfirmPassword: ConfirmPasswordScreen
+        ConfirmPassword: ConfirmPasswordScreen,
+        Upload: UploadScreen
     }),
     turkishFlow:createSwitchNavigator({
         phaseOneFlowTr: createStackNavigator({

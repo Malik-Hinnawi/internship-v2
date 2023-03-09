@@ -5,9 +5,10 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { SafeAreaView } from "react-navigation";
 import { Context as AuthContext } from "../context/AuthContext";
 import { ScrollView } from "react-native-gesture-handler";
+import NavLink from "../components/NavLink";
 
 const ProfileScreen = () =>{
-    const {state, updatePic} = useContext(AuthContext);
+    const {state} = useContext(AuthContext);
 
     return <SafeAreaView forceInset={{top: 'always'}}>
         <ScrollView>
@@ -18,13 +19,16 @@ const ProfileScreen = () =>{
                 headers: {
                     Authorization: 'Bearer ' + state.token,
                     Pragma: 'no-cache',
+                    "Content-Type": "multipart/form-data" 
                 }
             }}
             style={{width: 400, height: 400}} />
             
-            <TouchableOpacity onPress = {()=> updatePic()}>
-                <Text style= {styles.linkStyle}>Update Profile picture</Text>
-            </TouchableOpacity>
+            <NavLink 
+            text = "Change Profile pic"
+            routeName="Upload"
+            />
+
 
             <View style = {styles.miniContainerStyle}>
             <Text h4>Name: </Text>
